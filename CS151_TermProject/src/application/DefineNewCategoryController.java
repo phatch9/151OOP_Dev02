@@ -8,17 +8,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
 public class DefineNewCategoryController {
     @FXML
     private TextField categoryNameField;
+    
+    @FXML Label errorLabel;
+    
+    @FXML
+    private void resetErrorLabel() {
+    	errorLabel.setVisible(false);
+    }
 
     @FXML
     private void saveCategory() {
-        String categoryName = categoryNameField.getText();
-
+    	String input = categoryNameField.getText();
+    	
+    	// Strips whitespace from both ends of the string and sets errorLabel if input is only whitespace
+        if (input.replaceAll("^[ \t]+|[ \t]+$", "").equals("")) {
+        	errorLabel.setVisible(true);
+        }
+        else {
+        	String categoryName = input;
+        }
     }
 
     @FXML
