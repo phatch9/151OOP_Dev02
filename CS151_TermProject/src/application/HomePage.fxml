@@ -24,7 +24,7 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #fafafa;" text="Search" />
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #fafafa;" text="New Asset Category" textAlignment="CENTER" wrapText="true" />
+                        <Button fx:id="DefineAssetCategory" alignment="CENTER" mnemonicParsing="false" onAction="#openDefineNewCategoryPage" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #fafafa;" text="New Asset Category" textAlignment="CENTER" wrapText="true" />
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #fafafa;" text="New Storage Location" textAlignment="CENTER" wrapText="true" />
                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #fafafa;" text="Reports" />
                      </children>
