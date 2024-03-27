@@ -14,7 +14,7 @@ public class HomePageController {
 
     @FXML
     private void openDefineNewCategoryPage(ActionEvent event) throws IOException {
-        Parent defineNewCategoryPage = FXMLLoader.load(getClass().getResource("DefineNewCategory.fxml"));
+        Parent defineNewCategoryPage = FXMLLoader.load(getClass().getClassLoader().getResource("view/DefineNewCategory.fxml"));
         Scene defineNewCategoryScene = new Scene(defineNewCategoryPage, 600, 400);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(defineNewCategoryScene);

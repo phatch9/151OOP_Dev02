@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -25,20 +26,42 @@ public class DefineNewCategoryController {
 
     @FXML
     private void saveCategory() {
-    	String input = categoryNameField.getText();
+    	String input = categoryNameField.getText().replaceAll("^[ \t]+|[ \t]+$", "");
     	
     	// Strips whitespace from both ends of the string and sets errorLabel if input is only whitespace
-        if (input.replaceAll("^[ \t]+|[ \t]+$", "").equals("")) {
+        if (input.equals("")) {
+        	errorLabel.setTextFill(Paint.valueOf("#ff0000"));
+        	errorLabel.setText("Invalid Input: Please enter a category name");
         	errorLabel.setVisible(true);
         }
         else {
-        	String categoryName = input;
+        	Category userInput = new Category(input);
+        	try {
+        		DataBaseAccessor db = new DataBaseAccessor();
+        		boolean success = db.addEntry(userInput.getTableName(), userInput.getColName(),
+        				userInput.getColType(), userInput.getRestrictionCol(), userInput.getEntryVal());
+        		
+        		// give user a success label if success is true, else give error label
+        		if (success) {
+                	errorLabel.setTextFill(Paint.valueOf("#01c505"));
+                	errorLabel.setText("New Category Successfully Added");
+                	errorLabel.setVisible(true);
+        		}
+        		else {
+        			errorLabel.setTextFill(Paint.valueOf("#ff0000"));
+                	errorLabel.setText("Invalid Input: Category has already been defined");
+                	errorLabel.setVisible(true);
+        		}
+        	}
+        	catch (Exception e) {
+        		System.err.println(e);
+        	}
         }
     }
 
     @FXML
     private void returnToHome(ActionEvent event) throws IOException {
-        Parent homePage = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+        Parent homePage = FXMLLoader.load(getClass().getClassLoader().getResource("view/HomePage.fxml"));
         Scene homeScene = new Scene(homePage);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
