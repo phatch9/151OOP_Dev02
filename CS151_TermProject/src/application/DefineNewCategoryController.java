@@ -37,9 +37,8 @@ public class DefineNewCategoryController {
         else {
         	Category userInput = new Category(input);
         	try {
-        		DataBaseAccessor db = new DataBaseAccessor();
-        		boolean success = db.addEntry(userInput.getTableName(), userInput.getColName(),
-        				userInput.getColType(), userInput.getRestrictionCol(), userInput.getEntryVal());
+        		DataBaseAccessor db = DataBaseAccessor.getSingleInstance();
+        		boolean success = db.addEntry(userInput);
         		
         		// give user a success label if success is true, else give error label
         		if (success) {

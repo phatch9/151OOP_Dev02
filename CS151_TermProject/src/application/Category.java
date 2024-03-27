@@ -1,6 +1,6 @@
 package application;
 
-public class Category {
+public class Category implements BeanInt{
 	private String[] colName = {"name"};
 	private String[] colType = {"STRING"};
 	private String[] restrictionCol = {"name"};

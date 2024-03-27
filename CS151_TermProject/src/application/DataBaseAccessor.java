@@ -6,9 +6,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataBaseAccessor {
-	public boolean addEntry(String tableName, String[] colName, String[]colType, String[]restrictionCol, String[]entryVal) throws ClassNotFoundException {
+	private static DataBaseAccessor singleInstance = new DataBaseAccessor();
+	
+	private DataBaseAccessor() {}
+	
+	public static DataBaseAccessor getSingleInstance() {
+		return singleInstance;
+	}
+	
+	public boolean addEntry(BeanInt beanObj) throws ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
 		Connection connection = null;
+		
+		String tableName = beanObj.getTableName();
+		String[] colName = beanObj.getColName();
+		String[] colType = beanObj.getColType();
+		String[] entryVal = beanObj.getEntryVal();
+		String[] restrictionCol = beanObj.getRestrictionCol();
 		String columns = "";
 		String restrictions = ", ";
 		String values = "";
