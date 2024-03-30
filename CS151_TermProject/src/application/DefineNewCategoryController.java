@@ -26,9 +26,10 @@ public class DefineNewCategoryController {
 
     @FXML
     private void saveCategory() {
+    	// Strips input of whitespace from both ends
     	String input = categoryNameField.getText().replaceAll("^[ \t]+|[ \t]+$", "");
     	
-    	// Strips whitespace from both ends of the string and sets errorLabel if input is only whitespace
+    	// Rejects input if it is left blank
         if (input.equals("")) {
         	errorLabel.setTextFill(Paint.valueOf("#ff0000"));
         	errorLabel.setText("Invalid Input: Please enter a category name");
@@ -40,7 +41,7 @@ public class DefineNewCategoryController {
         		DataBaseAccessor db = DataBaseAccessor.getSingleInstance();
         		boolean success = db.addEntry(userInput);
         		
-        		// give user a success label if success is true, else give error label
+        		// Notifies the user if the DB was successful, rejects input if location name is already in the DB
         		if (success) {
                 	errorLabel.setTextFill(Paint.valueOf("#01c505"));
                 	errorLabel.setText("New Category Successfully Added");

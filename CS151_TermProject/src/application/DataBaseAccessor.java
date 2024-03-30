@@ -10,6 +10,7 @@ public class DataBaseAccessor {
 	
 	private DataBaseAccessor() {}
 	
+	// Returns singleton instance
 	public static DataBaseAccessor getSingleInstance() {
 		return singleInstance;
 	}
@@ -18,6 +19,7 @@ public class DataBaseAccessor {
 		Class.forName("org.sqlite.JDBC");
 		Connection connection = null;
 		
+		// Grab data from the Java bean
 		String tableName = beanObj.getTableName();
 		String[] colName = beanObj.getColName();
 		String[] colType = beanObj.getColType();
@@ -48,7 +50,7 @@ public class DataBaseAccessor {
 		
 		try
 		{
-	      // create a database connection
+			// create a database connection
 			connection = DriverManager.getConnection("jdbc:sqlite:assetRacoon.db");
 	
 			Statement statement = connection.createStatement();

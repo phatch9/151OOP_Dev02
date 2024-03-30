@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DefineNewCategoryController">
-    <Label text="Enter Category Name:" />
+    <Label text="*Enter Category Name:" />
     <TextField fx:id="categoryNameField" maxWidth="200" onMouseClicked="#resetErrorLabel" promptText="Category Name" />
    <Label fx:id="errorLabel" text="Invalid Input: Please enter a category name" textFill="#01c505" visible="false" />
     <Button onAction="#saveCategory" text="Save Category" />
